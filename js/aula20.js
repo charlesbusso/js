@@ -4,6 +4,7 @@ let instrucoes = document.querySelector('#instrucoes')
 let aviso = document.querySelector('#aviso')
 let pontos = 0 // pontos para o placar
 let placar = 0 // placar
+let nivel = document.querySelector('h2')
 
 // pergunta
 
@@ -181,16 +182,62 @@ const q16 = {
 }
 const q17 = {
     numQuestao : 17,
-    pergunta : " ?", 
-    alternativaA : "Só pensam em vingança",
-    alternativaB : "Não sabem se defender",
-    alternativaC : "São fracos e oprimidos",
-    alternativaD : "Por falta de conhecimento na palavra de Deus",
-    correta : "Por falta de conhecimento na palavra de Deus",
+    pergunta : " Quem é o Avô de Davi?", 
+    alternativaA : "Obede",
+    alternativaB  : "Boaz",
+    alternativaC : "Jessé ",
+    alternativaD : "Elias",
+    correta : "Obede",
+}
+const q18 = {
+    numQuestao : 18,
+    pergunta : " Quem era os filhos de Noemi?", 
+    alternativaA : "José e Judá",
+    alternativaB : "Jacó e Esaúl",
+    alternativaC : "Malom e Quiliom",
+    alternativaD : "Elimeleque e Adrameleque ",
+    correta : "Malom e Quiliom",
+}
+const q19 = {
+    numQuestao : 19,
+    pergunta : "Quem era a sogra de Rute", 
+    alternativaA : "Noeli",
+    alternativaB : "Norma",
+    alternativaC : "Raquel",
+    alternativaD : "Noemi",
+    correta : "Noemi",
+}
+const q20 = {
+    numQuestao : 20,
+    pergunta : "Quem fez um voto de tolo na Bíblia", 
+    alternativaA : "Adorão",
+    alternativaB : "João Batista",
+    alternativaC : "Gileade",
+    alternativaD : "Jefté",
+    correta : "Jefté",
+}
+const q21 = {
+    numQuestao : 21,
+    pergunta : "Qual é o livro de Salomão na Bíblia", 
+    alternativaA : "Eclesiastes, Provérbios e Samuel",
+    alternativaB : "Jeremias, Provérbios e Cântico dos Cânticos",
+    alternativaC : "Lamentações, Salmos e Provérbios",
+    alternativaD : "Eclesiastes, Provérbios e Cântico dos Cânticos ",
+    correta : "Eclesiastes, Provérbios e Cântico dos Cânticos",
+}
+const q22 = {
+    numQuestao : 22,
+    pergunta : "Qual é o livro de Salomão na Bíblia", 
+    alternativaA : "Eclesiastes, Provérbios e Samuel",
+    alternativaB : "Jeremias, Provérbios e Cântico dos Cânticos",
+    alternativaC : "Lamentações, Salmos e Provérbios",
+    alternativaD : "Eclesiastes, Provérbios e Cântico dos Cânticos ",
+    correta : "Eclesiastes, Provérbios e Cântico dos Cânticos",
 }
 
+
 //constante com um array de objetos com todas as questões
-const questoes = [q0, q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, q11, q12, q13, q14, q15, q16 ]
+const questoes = [q0, q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, q11, q12, q13, q14, q15, q16, q17, q18, q19, q20, q21, q22 ]
 
 let numero = document.querySelector('#numero')
 let total = document.querySelector('#total')
@@ -250,9 +297,24 @@ function verificarSeAcertou(nQuestao, resposta) {
     let certa = questoes[numeroDaQuestao].correta
     if(respostaEscolhida == certa) {
         pontos += 10
+        titulo.textContent = "Parabéns você acertou 😊"
+        
        }else {
-          
-    }
+        titulo.textContent = "Que pena, você errou 😢 !! Precisa estudar mais!"
+         }
+         if (numeroDaQuestao < 10){
+            nivel.textContent = 'Nivel 1'
+         }else if((numeroDaQuestao => 11)&& (numeroDaQuestao <= 20)){
+            nivel.textContent = 'Nível 2'
+         }else if((numeroDaQuestao => 20)&&(numeroDaQuestao <= 30)){
+            nivel.textContent = 'Nível 3'
+         }else(nivel)
+
+         
+
+         
+
+         
 
 
 
@@ -270,9 +332,10 @@ function verificarSeAcertou(nQuestao, resposta) {
             fimDoJogo()
         }else {
             proximaQuestao(proxima)
+            titulo.textContent = ''
         }
 
-       }, 250)
+       }, 950)
 
        desbloquearAlternativas()
 }
@@ -291,6 +354,19 @@ function fimDoJogo() {
     b.textContent = ""
     c.textContent = ""
     d.textContent = ""
+
+    if(pontos < 80){
+        pergunta.textContent = "Precisa estudar mais, Você não sabe muito sobre a Bíblia 😢!"
+    }else if((pontos => 80)&&(pontos <= 150)){
+        pergunta.textContent = "Você acertou algumas questões, mais tem que estudar mais! 😢"
+    }else if((pontos => 160)&&(pontos <= 290)){
+        pergunta.textContent = "Parabéns, Você sabe bastante da Bíblia 😊"
+    }else if((pontos => 300)){ 
+    pergunta.textContent = "Parabéns, Você acertou todas as perguntas e sabe muito, mais muito sobre a Bíblia 😊😊😊😊😊"
+    }else (pergunta.textContent = '') 
+
+
+    
 
     a.setAttribute('value', '0')
     b.setAttribute('value', '0')
