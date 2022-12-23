@@ -87,7 +87,7 @@ const q6 = {
     alternativaB : "996",
     alternativaC : "969",
     alternativaD : "992",
-    correta : "969"
+    correta : "969",
 }
 const q7 = {
     numQuestao : 7,
@@ -96,7 +96,7 @@ const q7 = {
     alternativaB : "15",
     alternativaC : "17",
     alternativaD : "19",
-    correta : "17"
+    correta : "17",
 }
 const q8 = {
     numQuestao : 8,
@@ -105,7 +105,7 @@ const q8 = {
     alternativaB : "Que o pai, mãe e seus irmaos se encurvariam a ele",
     alternativaC : "Que ele é um anjo de Deus",
     alternativaD : "Ele inventou o sonho pra provocar os irmãos",
-    correta : "Que o pai, mãe e seus irmaos se encurvariam a ele"
+    correta : "Que o pai, mãe e seus irmaos se encurvariam a ele",
 }
 const q9 = {
     numQuestao : 9,
@@ -114,7 +114,7 @@ const q9 = {
     alternativaB : "Pastor da Igreja",
     alternativaC : "Soldado de Israel",
     alternativaD : "Profeta",
-    correta : "Rei de Israel e Judá"
+    correta : "Rei de Israel e Judá",
 }
 const q10 = {
     numQuestao : 10,
@@ -123,7 +123,7 @@ const q10 = {
     alternativaB : "O coração de Deus",
     alternativaC : "Rei muito bom",
     alternativaD : "Rei muito mal",
-    correta : "O coração de Deus"
+    correta : "O coração de Deus",
 }
 const q11 = {
     numQuestao : 11,
@@ -132,7 +132,7 @@ const q11 = {
     alternativaB : "Jeosebede",
     alternativaC : "Rebeca",
     alternativaD : "Bateseba",
-    correta : "Bateseba"
+    correta : "Bateseba",
 }
 const q12 = {
     numQuestao : 12,
@@ -141,7 +141,7 @@ const q12 = {
     alternativaB : "Jeroboão",
     alternativaC : "Roboão",
     alternativaD : "Samuel",
-    correta : "Salomão"
+    correta : "Salomão",
 }
 const q13 = {
     numQuestao : 13,
@@ -150,7 +150,7 @@ const q13 = {
     alternativaB : "Davi",
     alternativaC : "Jeremias",
     alternativaD : "Jonatas",
-    correta : "Jonatas"
+    correta : "Jonatas",
 }
 const q14 = {
     numQuestao : 14,
@@ -159,20 +159,38 @@ const q14 = {
     alternativaB : "Itai",
     alternativaC : "Jeremias",
     alternativaD : "Jonatas",
-    correta : "Itai"
+    correta : "Itai",
 }
 const q15 = {
     numQuestao : 15,
-    pergunta : "  ?", 
-    alternativaA : "Samuel",
-    alternativaB : "Itai",
-    alternativaC : "Jeremias",
-    alternativaD : "Jonatas",
-    correta : "Itai"
+    pergunta : "O que Salomão pediu a Deus em um sonho ?", 
+    alternativaA : "Riqueza",
+    alternativaB : "Sabedoria",
+    alternativaC : "Vingança a seus inimigos",
+    alternativaD : "Poder",
+    correta : "Sabedoria",
+}
+const q16 = {
+    numQuestao : 16,
+    pergunta : "Segundo Oséias, o povo é destruido por causa do que ?", 
+    alternativaA : "Só pensam em vingança",
+    alternativaB : "Não sabem se defender",
+    alternativaC : "São fracos e oprimidos",
+    alternativaD : "Por falta de conhecimento na palavra de Deus",
+    correta : "Por falta de conhecimento na palavra de Deus",
+}
+const q17 = {
+    numQuestao : 17,
+    pergunta : " ?", 
+    alternativaA : "Só pensam em vingança",
+    alternativaB : "Não sabem se defender",
+    alternativaC : "São fracos e oprimidos",
+    alternativaD : "Por falta de conhecimento na palavra de Deus",
+    correta : "Por falta de conhecimento na palavra de Deus",
 }
 
 //constante com um array de objetos com todas as questões
-const questoes = [q0, q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, q11, q12, q13 ]
+const questoes = [q0, q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, q11, q12, q13, q14, q15, q16 ]
 
 let numero = document.querySelector('#numero')
 let total = document.querySelector('#total')
