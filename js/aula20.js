@@ -80,9 +80,99 @@ const q5 = {
     alternativaD : "moisés",
     correta : "Abraão",
 } 
+const q6 = {
+    numQuestao : 6,
+    pergunta : "Quantos anos viveu Matusalém ?", 
+    alternativaA : "962",
+    alternativaB : "996",
+    alternativaC : "969",
+    alternativaD : "992",
+    correta : "969"
+}
+const q7 = {
+    numQuestao : 7,
+    pergunta : "Quantos anos tinha José quando foi vendido pelos irmãos ?", 
+    alternativaA : "22",
+    alternativaB : "15",
+    alternativaC : "17",
+    alternativaD : "19",
+    correta : "17"
+}
+const q8 = {
+    numQuestao : 8,
+    pergunta : "José sonhou que o sol, a lua e 11 estrelas se uncurvavam perante ele. O que isso quer dizer ?", 
+    alternativaA : "Que ele será um deus",
+    alternativaB : "Que o pai, mãe e seus irmaos se encurvariam a ele",
+    alternativaC : "Que ele é um anjo de Deus",
+    alternativaD : "Ele inventou o sonho pra provocar os irmãos",
+    correta : "Que o pai, mãe e seus irmaos se encurvariam a ele"
+}
+const q9 = {
+    numQuestao : 9,
+    pergunta : "Quem era Davi ?", 
+    alternativaA : "Rei de Israel e Judá",
+    alternativaB : "Pastor da Igreja",
+    alternativaC : "Soldado de Israel",
+    alternativaD : "Profeta",
+    correta : "Rei de Israel e Judá"
+}
+const q10 = {
+    numQuestao : 10,
+    pergunta : " Segundo Deus, o que Davi era ?", 
+    alternativaA : "Sacerdote",
+    alternativaB : "O coração de Deus",
+    alternativaC : "Rei muito bom",
+    alternativaD : "Rei muito mal",
+    correta : "O coração de Deus"
+}
+const q11 = {
+    numQuestao : 11,
+    pergunta : "Davi cometeu um adultério e depois se casou com a moça, que era ela ?", 
+    alternativaA : "Miriã",
+    alternativaB : "Jeosebede",
+    alternativaC : "Rebeca",
+    alternativaD : "Bateseba",
+    correta : "Bateseba"
+}
+const q12 = {
+    numQuestao : 12,
+    pergunta : "Qual filho de Davi reinou após sua morte ?", 
+    alternativaA : "Salomão",
+    alternativaB : "Jeroboão",
+    alternativaC : "Roboão",
+    alternativaD : "Samuel",
+    correta : "Salomão"
+}
+const q13 = {
+    numQuestao : 13,
+    pergunta : "Quem matou o Gigante que tinha seis dedos em cada mão e seis dedos em cada pé ?", 
+    alternativaA : "Samuel",
+    alternativaB : "Davi",
+    alternativaC : "Jeremias",
+    alternativaD : "Jonatas",
+    correta : "Jonatas"
+}
+const q14 = {
+    numQuestao : 14,
+    pergunta : " Quem era o melhor amigo de Davi ?", 
+    alternativaA : "Samuel",
+    alternativaB : "Itai",
+    alternativaC : "Jeremias",
+    alternativaD : "Jonatas",
+    correta : "Itai"
+}
+const q15 = {
+    numQuestao : 15,
+    pergunta : "  ?", 
+    alternativaA : "Samuel",
+    alternativaB : "Itai",
+    alternativaC : "Jeremias",
+    alternativaD : "Jonatas",
+    correta : "Itai"
+}
 
 //constante com um array de objetos com todas as questões
-const questoes = [q0, q1, q2, q3, q4, q5]
+const questoes = [q0, q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, q11, q12, q13 ]
 
 let numero = document.querySelector('#numero')
 let total = document.querySelector('#total')
@@ -116,10 +206,10 @@ function proximaQuestao(nQuestao) {
     b.textContent = questoes[nQuestao].alternativaB
     c.textContent = questoes[nQuestao].alternativaC
     d.textContent = questoes[nQuestao].alternativaD
-    a.setAttribute('value', nQuestao + 'A')
-    b.setAttribute('value', nQuestao + 'B')
-    c.setAttribute('value', nQuestao + 'C')
-    d.setAttribute('value', nQuestao + 'D')
+    a.setAttribute('value', nQuestao+'A')
+    b.setAttribute('value', nQuestao+'B')
+    c.setAttribute('value', nQuestao+'C')
+    d.setAttribute('value', nQuestao+'D')
 }
 
 function bloquearAlternativas() {
@@ -176,7 +266,7 @@ function fimDoJogo() {
     let pont = ''
     pontos == 0 ? pont = 'ponto' : pont = 'pontos'
 
-    pergunta.textContent = "Você conseguiu" + " " + pont
+    pergunta.textContent = " Parabéns ,Você conseguiu " + pontos + " " + pont
     aviso.textContent = "você conseguiu " + pontos + " " + pont
 
     a.textContent = ""
