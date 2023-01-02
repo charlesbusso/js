@@ -2,9 +2,13 @@
 let titulo = document.querySelector('h1')
 let instrucoes = document.querySelector('#instrucoes')
 let aviso = document.querySelector('#aviso')
+let progresso = document.querySelector('#progresso')
 let pontos = 0 // pontos para o placar
 let placar = 0 // placar
 let nivel = document.querySelector('h2')
+let somAcerto = document.querySelector('#somAcerto')
+let somErro = document.querySelector('#somErro')
+let somAplausos = document.querySelector('#somAplausos')
 
 // pergunta
 
@@ -18,7 +22,7 @@ let b = document.querySelector('#b')
 let c = document.querySelector('#c')
 let d = document.querySelector('#d')
 //article com a class questao
-let articleQuestoes = document.querySelector('questoes')
+let articleQuestoes = document.querySelector('.questoes')
 let alternativas = document.querySelector('#alternativas')
 
 
@@ -45,7 +49,7 @@ const q1 = {
 
     const q2 = {
         numQuestao : 2,
-        pergunta : "Como Moisés foi encontrado ?",
+        pergunta : "Como Jesus foi encontrado ?",
         alternativaA : "Na cama",
         alternativaB : "Manjedoura",
         alternativaC : "Berço",
@@ -77,9 +81,9 @@ const q5 = {
     pergunta : "Deus disse a quem : Anda na minha presença e sê perfeito", 
     alternativaA : "Adão",
     alternativaB : "Jacó",
-    alternativaC : "Abraão",
+    alternativaC : "Abrão",
     alternativaD : "moisés",
-    correta : "Abraão",
+    correta : "Abrão",
 } 
 const q6 = {
     numQuestao : 6,
@@ -128,7 +132,7 @@ const q10 = {
 }
 const q11 = {
     numQuestao : 11,
-    pergunta : "Davi cometeu um adultério e depois se casou com a moça, que era ela ?", 
+    pergunta : "Davi cometeu um adultério e depois se casou com a moça, quem era ela ?", 
     alternativaA : "Miriã",
     alternativaB : "Jeosebede",
     alternativaC : "Rebeca",
@@ -191,7 +195,7 @@ const q17 = {
 }
 const q18 = {
     numQuestao : 18,
-    pergunta : " Quem era os filhos de Noemi?", 
+    pergunta : " Quem eram os filhos de Noemi?", 
     alternativaA : "José e Judá",
     alternativaB : "Jacó e Esaúl",
     alternativaC : "Malom e Quiliom",
@@ -218,7 +222,7 @@ const q20 = {
 }
 const q21 = {
     numQuestao : 21,
-    pergunta : "Qual é o livro de Salomão na Bíblia", 
+    pergunta : "Quais são os livros de Salomão na Bíblia", 
     alternativaA : "Eclesiastes, Provérbios e Samuel",
     alternativaB : "Jeremias, Provérbios e Cântico dos Cânticos",
     alternativaC : "Lamentações, Salmos e Provérbios",
@@ -227,7 +231,7 @@ const q21 = {
 }
 const q22 = {
     numQuestao : 22,
-    pergunta : "Qual é o livro de Salomão na Bíblia", 
+    pergunta : "Quais são os livros de Salomão na Bíblia", 
     alternativaA : "Eclesiastes, Provérbios e Samuel",
     alternativaB : "Jeremias, Provérbios e Cântico dos Cânticos",
     alternativaC : "Lamentações, Salmos e Provérbios",
@@ -277,18 +281,32 @@ function proximaQuestao(nQuestao) {
     d.setAttribute('value', nQuestao+'D')
 }
 
+alternativas.addEventListener('dblclick', () => {
+    pontos -= 10
+    if(numQuestao.value == 10 && pontos == 110){
+        pontos = 100
+    }
+})
+
 function bloquearAlternativas() {
-    a.classList.add('bloqueado')
-    b.classList.add('bloqueado')
-    c.classList.add('bloqueado')
-    d.classList.add('bloqueado')
+    alternativas.classList.add('bloqueado')
 }
 
 function desbloquearAlternativas() {
-    a.classList.remove('bloqueado')
-    b.classList.remove('bloqueado')
-    c.classList.remove('bloqueado')
-    d.classList.remove('bloqueado')
+    alternativas.classList.remove('bloqueado')
+}
+function piscarNoAcerto(){
+    articleQuestoes.classList.remove('errou')
+    articleQuestoes.classList.add('acertou')
+
+}
+function piscarNoErro(){
+    articleQuestoes.classList.remove('acertou')
+    articleQuestoes.classList.add('errou')
+}
+function tirarPiscar(){
+    articleQuestoes.classList.remove('acertou')
+    articleQuestoes.classList.remove('errou')
 }
 function verificarSeAcertou(nQuestao, resposta) {
     let numeroDaQuestao = nQuestao.value
@@ -296,12 +314,23 @@ function verificarSeAcertou(nQuestao, resposta) {
     let respostaEscolhida = resposta.textContent
     let certa = questoes[numeroDaQuestao].correta
     if(respostaEscolhida == certa) {
+        piscarNoAcerto()
+        somAcerto.play()
         pontos += 10
         titulo.textContent = "Parabéns você acertou 😊"
+        if(nQuestao.value == 1 && pontos == 20){
+            pontos = 10
+        }
         
        }else {
+        piscarNoErro()
+        somErro.play()
         titulo.textContent = "Que pena, você errou 😢 !! Precisa estudar mais!"
          }
+         setTimeout(() => {
+            tirarPiscar()
+         }, 700);
+
          if (numeroDaQuestao < 10){
             nivel.textContent = 'Nivel 1'
          }else if((numeroDaQuestao => 11)&& (numeroDaQuestao <= 20)){
@@ -309,14 +338,6 @@ function verificarSeAcertou(nQuestao, resposta) {
          }else if((numeroDaQuestao => 20)&&(numeroDaQuestao <= 30)){
             nivel.textContent = 'Nível 3'
          }else(nivel)
-
-         
-
-         
-
-         
-
-
 
        //atualizar  o placar
 

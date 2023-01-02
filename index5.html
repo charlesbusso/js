@@ -23,6 +23,10 @@
                     <h2 id="pergunta"></h2>
 
                 </header>
+                <figure class="imagemDaQuestao">
+                    <img src="" alt="">
+
+                </figure>
 
                 <div class="corpo">
                     <ol type="A" id="alternativas">
@@ -34,18 +38,24 @@
 
                     </ol>
                 </div>
+                <article id="aviso" class="centro">
+                    <input type="range" value="1" min="1" max="10" step="1" name="progresso" id="progresso" disabled><br>
+                    <span id="numero"></span> de <span id="total"></span>
+
+                </article>
 
             </article>
-            <article id="aviso">Questão <span id="numero"></span> de <span id="total"></span>
-
-            </article>
+           
 
         </section>
-        <footer class="centro">Desenvolvido por Charles Busso Junto com Edson Maia  &copy; 2022
+        <footer id="autoria" class="centro">Desenvolvido por Charles Busso Junto com Edson Maia  &copy; 2022
 
         </footer>
 
     </main>
+    <audio preload src="positive.mp3" id="somAcerto"></audio>
+    <audio preload src="negative.mp3" id="somErro"></audio>
+    <audio preload src="aplausos.mp3" id="somAplausos"></audio>
 
     <script src="js/aula20.js"></script>
     
