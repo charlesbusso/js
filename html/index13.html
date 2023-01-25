@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>formatação condicional</title>
+</head>
+<body>
+    <style>
+        table{
+            border-collapse: collapse;
+            margin: 30px;
+            text-align: center;
+            
+        }
+        table,td,tr,th{
+            border: 1px solid #000;
+            padding: 10px;
+        }
+    </style>
+    <div id="titulo"></div>
+
+    <table id="tbnotas">
+        <tr>
+            <th>Alunos</th>
+            <th>Nota 1</th>
+            <th>Nota 2</th>
+            <th>Resultado</th>
+        </tr>
+        <tr>
+            <td>A11</td>
+            <td>35</td>
+            <td>48</td>
+            <td id="n1"></td>
+        </tr>
+        <tr>
+            <td>A12</td>
+            <td>20</td>
+            <td>15</td>
+            <td id="n2"></td>
+        </tr>
+        <tr>
+            <td>A13</td>
+            <td>48</td>
+            <td>48</td>
+            <td id="n3"></td>
+        </tr>
+        <tr>
+            <td>A14</td>
+            <td>10</td>
+            <td>30</td>
+            <td id="n4"></td>
+        </tr>
+    </table>
+
+    <script>
+        let tabela = document.getElementById('tbnotas');
+        let nota;
+
+        for(let i = 1 ; i< tabela.rows.length; i++){
+            nota = parseFloat(tabela.rows[i].cells[1].innerHTML)+ parseFloat(tabela.rows[i].cells[2].innerHTML);
+            tabela.rows[i].cells[3].innerHTML = nota;
+
+        }
+        let n = [];
+        n[0] = document.getElementById('n1');
+        n[1] = document.getElementById('n2');
+        n[2] = document.getElementById('n3');
+        n[3] = document.getElementById('n4');
+
+        for(let i = 0;i <4;i ++){
+            if(n[i].innerHTML < 70){
+                n[i].style.color = "#f00";
+            }else{
+                n[i].style.color = "#00f";
+            }
+        }
+    </script>
+    
+</body>
+</html>
