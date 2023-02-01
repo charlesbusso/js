@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>remove attribute</title>
+</head>
+<style>
+    #carro{
+        width: 400px;
+        height: 800px;
+        
+    }
+    .s1{
+        background-image: url('imgs/s1.jpg');
+        
+    }
+    
+    .s2{
+        background-image: url('imgs/s2.jpg');
+    }
+       
+    .s3{
+        background-image: url('imgs/s3.jpg');
+        
+    }
+    .foto{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        
+    }
+</style>
+<body>
+   
+  
+
+    <button onclick="trocaCarro(1)">carro 1</button>
+    <button onclick="trocaCarro(2)">carro 2</button>
+    <button onclick="trocaCarro(3)">carro 3</button>
+    <button onclick="removerCarro()">remover carro</button>
+    <button onclick="verifica()">verificar</button>
+    <div id="carro"></div>
+
+
+    
+    <script>
+        function trocaCarro(s){
+            let obj = document.getElementById("carro");
+        
+        document.getElementById("carro").setAttribute("class","s1");
+        if(s == 1){ 
+            obj.setAttribute("class", "s1");
+        }else if(s == 2){
+            obj.setAttribute("class", "s2");
+        }else if(s == 3){
+            obj.setAttribute("class", "s3");
+        }
+    }
+    function removerCarro(){
+        let obj = document.getElementById("carro");
+        obj.removeAttribute("class");
+    }
+    function verifica(){
+        let obj = document.getElementById("carro");
+       if(obj.hasAttribute("class")){
+        alert("Atributo class está na tag");
+       }else {
+        alert("sem atributo class");
+       }
+
+    }
+        
+        </script>
+        
+    </body>
+    </html>
+    
+</body>
+</html>
