@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ping-pong</title>
+</head>
+<style>
+    body{
+        margin: 0px;
+        background-color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+    }
+    #dvPainel{
+        display: flex;
+        height: 50px;
+        align-items: center;
+    }
+    .itemPainel{
+        margin: 5px;
+
+    }
+    #dvJogo{
+        width: 960px;
+        height: 500px;
+        border: 1px solid white;
+        background-color: darkgreen;
+        display: flex;
+        justify-content: space-between;
+        
+    }
+    #dvBola{
+        position: absolute;
+        top: 240px;
+        left: 675px;
+        width: 20px;
+        height: 20px;
+        background-color: white;
+        border-radius: 50%;
+    }
+    .barraesquerda{
+        position: absolute;
+        width: 20px;
+        height: 140px;
+        background-color: white;
+        top: 180px;
+        margin-left: 10px;
+    }
+    .barradireita{
+        position: absolute;
+        width: 20px;
+        height: 140px;
+        background-color: white;
+        top: 180px;
+        margin-left: 930px;
+         
+    }
+    input{
+        text-align: center;
+    }
+    
+   
+</style>
+<body>
+    <div id="dvJogo">
+        <div id="dvBola"></div>
+        <div id="dvJogador" class="barraesquerda"></div>
+        <div id="dvCpu" class="barradireita"></div>
+
+    </div>
+    <div id="dvPainel">
+        <div class="itemPainel">
+            <label for="number">Pontos</label>
+            <input type="text" id="txtPontos" value="0" size="10">
+
+        </div>
+        <div class="itemPainel"></div>
+        <button id="btIniciar">Iniciar</button>
+    </div>
+ 
+
+
+    <script>
+        //elementos
+        let vbtIniciar;
+        let vbola;
+        let vcpu;
+        let vjogador;
+        let vPaineltxtPontos;
+
+        //controle de animação
+        let game, frames;
+
+        // posições
+        let posBolaX, posBolaY;
+        let posJogadorX, posJogadorY;
+        let posCpuX, posCpuY;
+
+        //direção de acordo com a tecla
+
+        let dirJy;
+
+        //posições iniciais
+
+        let posJogIniY = 180, posCpuIniY = 180, posBolaIniX = 675, posBolaIniY = 240;
+
+        // tamanhos
+        let campoX = 0, campoY = 0, campoW = 960, campoH = 500;
+        let barraW = 20, barraH = 140, bolaW = 20, bolaH = 20;
+
+        //direção
+
+        let bolaX, bolaY;
+        let cpuY = 0;
+
+        // velocidade
+
+        let velBola, velCpu, velJogador;
+
+        //controle
+
+        let pontos = 0;
+        let tecla;
+        jogo = false;
+
+        function controlajog(){
+            if(jogo){
+                posJogadorY += velJogador * dirJy;
+                vjogador.style.top = posJogadorY + "px";
+            }
+        }
+
+        function teclaDw(){
+            tecla = event.keyCode;
+            if(tecla == 38){// cima
+                dirJy =- 1; 
+
+            }else if(tecla == 40){
+                // baixo
+                dirJy =+ 1;
+            }
+
+        }
+        function teclaUp(){
+            tecla = event.keyCode;
+            if(tecla == 38){// cima
+                dirJy = 0; 
+
+            }else if(tecla == 40){
+                // baixo
+                dirJy = 0;
+
+        }
+    }
+
+        function game(){
+            if(jogo){
+                
+
+            }
+            frames = requestAnimationFrame(game);
+        }
+
+        function iniciaJogo(){
+            if(!jogo){
+            cancelAnimationFrame(frames);
+            jogo = true;
+            dirJy =0;
+            posBolaX = posBolaIniX;
+            posBolaY = posBolaIniY;
+            posJogadorY = 0;
+            posCpuY = posCpuIniY;
+            game();
+
+        }
+
+        }
+
+        function inicializa(){
+           velBola = velCpu = velJogador = 8;
+            vbtIniciar = document.getElementById('btIniciar');
+            vbtIniciar.addEventListener('click',iniciaJogo);
+            vjogador = document.getElementById('dvJogador');
+            vbola = document.getElementById('dvBola');
+            vcpu = document.getElementById('dvCpu');
+            vPaineltxtPontos = document.getElementById('txtpontos');
+            document.addEventListener("Keydown", teclaDw);
+            document.addEventListener("Keyup", teclaUp);
+
+        }
+        window.addEventListener("load", inicializa);
+
+
+
+    </script>
+    
+</body>
+</html>
