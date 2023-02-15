@@ -147,8 +147,8 @@
 
             //colisão com o jogador
             if(
-                (posBolaX <= posJogadorX + barraW)&&(((posBolaY + bolaH) >= posJogadorY)&&(posBolaY <= posJogadorY + barraH))){
-                    bolaY = ((posBolaY + (bolaH /2 ))-(posJogadorY + (barraH/2))) /16);
+                (posBolaX <= posJogadorX + barraW)&&((posBolaY + bolaH >= posJogadorY)&&(posBolaY <= posJogadorY + barraH))){
+                    bolaY = (((posBolaY + (bolaH /2))-(posJogadorY + (barraH/2))) /16);
                     bolaX *=-1;
 
                 }
