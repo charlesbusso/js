@@ -95,6 +95,7 @@
 
         //controle de animação
         let game, frames;
+        
 
         // posições
         let posBolaX, posBolaY;
@@ -128,21 +129,48 @@
         let tecla;
         jogo = false;
 
-        function controlajog(){
+        function controlaJog(){
             if(jogo){
                 posJogadorY += velJogador * dirJy;
+                if(
+                    ((posJogadorY + barraH) >= campoH)||((posJogadorY)<= 0)){
+                    posJogadorY += (velJogador * dirJy)*(-1);
+                }
                 vjogador.style.top = posJogadorY + "px";
             }
+        }
+        function controlaBola(){
+            //movimento da bola
+
+            posBolaX += velBola * bolaX;
+            posBolaY += velBola * bolaY;
+
+            //colisão com o jogador
+            if(
+                (posBolaX <= posJogadorX + barraW)&&((posBolaY + bolaH >= posJogadorY)&&(posBolaY <= posJogadorY + barraW))){
+                    bolaY = (((posBolaY + (bolaH /2 ))- (posJogadorY + (barraH/2))) /16);
+                    bolaX *=-1;
+
+                }
+                if(
+                    (posBolaX >= posCpuX - barraW)&&((posBolaY + bolaH >= posCpuY)&&(posBolaY <= posCpuY + barraH))){
+                    bolaY = (((posBolaY + (bolaH /2 )) - (posCpuY + (barraH/2))) /16);
+                    bolaX *=-1;
+                    }
+
+            vbola.style.top = posBolaY + "px";
+            vbola.style.left = posBolaX +"px";
+
         }
 
         function teclaDw(){
             tecla = event.keyCode;
             if(tecla == 38){// cima
-                dirJy =- 1; 
+                dirJy = -1; 
 
             }else if(tecla == 40){
                 // baixo
-                dirJy =+ 1;
+                dirJy = +1;
             }
 
         }
@@ -158,37 +186,44 @@
         }
     }
 
-        function game(){
-            if(jogo){
-                
-
-            }
-            frames = requestAnimationFrame(game);
+       function games(){
+        if(jogo){
+            controlaJog();
+            controlaBola();
+            
         }
+        frames = requestAnimationFrame(games);
+       }
 
         function iniciaJogo(){
             if(!jogo){
             cancelAnimationFrame(frames);
             jogo = true;
-            dirJy =0;
+            dirJy = 0;
+            bolaY = 0;
+            if((Math.random()*10)< 5){
+                bolaX = 1;
+            }else {
+                bolaX = 1;
+            }
             posBolaX = posBolaIniX;
             posBolaY = posBolaIniY;
-            posJogadorY = 0;
+            posJogadorY = posJogIniY;
             posCpuY = posCpuIniY;
-            game();
+            games();
 
         }
 
         }
 
         function inicializa(){
-           velBola = velCpu = velJogador = 8;
+            velBola = velCpu = velJogador = 8;
             vbtIniciar = document.getElementById('btIniciar');
-            vbtIniciar.addEventListener('click',iniciaJogo);
+            vbtIniciar.addEventListener("click",iniciaJogo);
             vjogador = document.getElementById('dvJogador');
             vbola = document.getElementById('dvBola');
             vcpu = document.getElementById('dvCpu');
-            vPaineltxtPontos = document.getElementById('txtpontos');
+            vPaineltxtPontos = document.getElementById('txtPontos');
             document.addEventListener("Keydown", teclaDw);
             document.addEventListener("Keyup", teclaUp);
 
