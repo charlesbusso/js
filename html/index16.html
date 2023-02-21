@@ -91,7 +91,7 @@
         let vbola;
         let vcpu;
         let vjogador;
-        let vPaineltxtPontos;
+        let vPaineltxtPontos
 
         //controle de animação
         let frames;
@@ -108,7 +108,7 @@
 
         //posições iniciais
 
-        let posJogIniY = 180, posCpuIniY = 180, posBolaIniX = 675, posBolaIniY = 240;
+        let posJogIniY = 180,posJogIniX = 10, posCpuIniY = 180, posCpuIniX = 930, posBolaIniX = 475, posBolaIniY = 240;
 
         // tamanhos
         let campoX = 0, campoY = 0, campoW = 960, campoH = 500;
@@ -129,17 +129,27 @@
         let tecla;
         jogo = false;
 
+        function controlajog(){
+            if(jogo){
+                posJogadorY += velJogador * dirJy;
+                if(((posJogadorY + barraH) >= campoH)||((posJogadorY) <= 1)){
+                    posJogadorY += (velJogador*dirJy)*(-1);
+                }
+                vjogador.style.top = posJogadorY + "px";
+            }
+        }
+
         function controlacpu(){
             if(jogo){
-                if((posBolaX > (campoW /2))&&(bolaX > 0)){ //movimentar a cpu
-                        if(((posBolaY + (bolaH/2)) > ((posCpuY + (barraH/2))) + velCpu)){
+                if((posBolaX > (campoW/2))&&(bolaX > 0)){ //movimentar a cpu
+                        if(((posBolaY + (bolaH/2)) > (posCpuY + (barraH/2)) + velCpu)){
                             //mover para baixo
                             if(
-                                (posCpuY + barraH) <= campoH
+                                (posCpuY = barraH) <= campoH
                             ){
                                 posCpuY += velCpu;
                             }
-                        }else if((posBolaY + (bolaH/2)) < (posCpuY + (barraH/2)) - velCpu){
+                        }else if(((posBolaY + (bolaH/2)) < (posCpuY + barraH/2)) - velCpu){
                                 // mover para baixo
                                 if(posCpuY >= 0){
                                     posCpuY -= velCpu;
@@ -158,16 +168,7 @@
         }
         
 
-        function controlaJog(){
-            if(jogo){
-                posJogadorY += velJogador * dirJy;
-                if(
-                    ((posJogadorY + barraH) >= campoH)||((posJogadorY) <= 0)){
-                    posJogadorY += (velJogador * dirJy)*(-1);
-                }
-                vjogador.style.top = posJogadorY + "px";
-            }
-        }
+     
         function controlaBola(){
             //movimento da bola
 
@@ -175,20 +176,15 @@
             posBolaY += velBola * bolaY;
 
             //colisão com o jogador
-            if(
-                (posBolaX <= posJogadorX + barraW)&&((posBolaY + bolaH >= posJogadorY)&&(posBolaY <= posJogadorY + barraH))){
-                    bolaY = (((posBolaY + (bolaH /2))-(posJogadorY + (barraH/2))) /16);
+            if((posBolaX <= posJogadorX + barraW)&&((posBolaY + bolaH >= posJogadorY)&&(posBolaY <= posJogadorY + barraH))){
+                    bolaY = (((posBolaY + (bolaH/2))-(posJogadorY + (barraH/2)))/16);
                     bolaX *=-1;
 
                 }
-                if(
-                    (posBolaX >= posCpuX - barraW)&&((posBolaY + bolaH >= posCpuY)&&(posBolaY <= posCpuY + barraH))){
-                    bolaY = (((posBolaY + (bolaH /2 )) - (posCpuY + (barraH/2))) /16);
-                    bolaX *=-1;
-                    }
+                
                     // colisão com a cpu
                     if((posBolaX >= posCpuX - barraW)&&((posBolaY + bolaH >= posCpuY)&&(posBolaY <= posCpuY + barraH))){
-                        bolaY = (((posBolaY + (bolaH/2)) - (posCpuY + (barraH/2)))/16);
+                        bolaY = (((posBolaY + (bolaH/2))-(posCpuY+(barraH/2)))/16);
                         bolaX *=-1;
                     }
                     // limites superior e inferior
@@ -201,23 +197,23 @@
                         velBola = 0;
                         posBolaX = posBolaIniX;
                         posBolaY = posBolaIniY;
-                        posJogIniY = posJogIniY;
+                        posJogadorY = posJogIniY;
                         posCpuY = posCpuIniY;
                         pontos ++;
                         vPaineltxtPontos.value = pontos;
                         jogo = false;
-                        vjogador.style.top = posJogadorY = "px";
+                        vjogador.style.top = posJogadorY + "px";
                         vcpu.style.top = posCpuY + "px";
                     }else if(posBolaX <= 0){
                         velBola = 0;
                         posBolaX = posBolaIniX;
                         posBolaY = posBolaIniY;
-                        posJogIniY = posJogIniY;
+                        posJogadorY = posJogIniY;
                         posCpuY = posCpuIniY;
-                        pontos ++;
+                        pontos --;
                         vPaineltxtPontos.value = pontos;
                         jogo = false;
-                        vjogador.style.top = posJogadorY = "px";
+                        vjogador.style.top = posJogadorY + "px";
                         vcpu.style.top = posCpuY + "px";
                     }
 
@@ -233,7 +229,7 @@
 
             }else if(tecla == 40){
                 // baixo
-                dirJy = +1;
+                dirJy = 1;
             }
 
         }
@@ -249,14 +245,14 @@
         }
     }
 
-       function games(){
+       function game(){
         if(jogo){
-            controlaJog();
+            controlajog();
             controlaBola();
             controlacpu();
             
         }
-        frames = requestAnimationFrame(games);
+        frames = requestAnimationFrame(game);
        }
 
         function iniciaJogo(){
@@ -264,8 +260,8 @@
             velBola = velCpu = velJogador = 8;
             cancelAnimationFrame(frames);
             jogo = true;
-            dirJy = 0;
-            bolaY = 0;
+            dirJy = 0
+            bolaY = 0
             if((Math.random()*10)< 5){
                 bolaX = -1;
             }else {
@@ -274,8 +270,10 @@
             posBolaX = posBolaIniX;
             posBolaY = posBolaIniY;
             posJogadorY = posJogIniY;
+            posJogadorX = posJogIniX;
             posCpuY = posCpuIniY;
-            games();
+            posCpuX = posCpuIniX;
+            game();
 
         }
 
@@ -289,11 +287,12 @@
             vbola = document.getElementById('dvBola');
             vcpu = document.getElementById('dvCpu');
             vPaineltxtPontos = document.getElementById('txtPontos');
-            document.addEventListener("Keydown", teclaDw);
-            document.addEventListener("Keyup", teclaUp);
+            document.addEventListener('Keydown', teclaDw);
+            document.addEventListener('Keyup', teclaUp)
 
         }
-        window.addEventListener("load", inicializa);
+
+        window.addEventListener('load', inicializa);
 
 
 
