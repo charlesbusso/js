@@ -8,15 +8,65 @@
 </head>
 <body>
 
-    <div class="flip" id="card">
-        <div class="face" id="front">
-            front
-        </div>
-        <div class="face" id="back">
-            back
+    <style>
+        body{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container{
+            position: relative;
+            width: 100px;
+            height: 100px;
+        }
+        #carta{
+            position: absolute;
+            text-align: center;
+            transform-style: preserve-3d;
+            transition: all .5s ease;
+        }
+        #container:hover #carta{
+            transform: rotateY(180deg);
+        }
+        #frente{
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            backface-visibility: hidden;
+            background-color: blue;
+            color: white;
+        }
+        #atras{
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            backface-visibility: hidden;
+            background-color: red;
+            color: white;
+            transform: rotateY(180deg);
+
+        }
+
+    </style>
+
+       <div id="container">
+        <div id="carta">
+            <div id="frente">frente</div>
+            <div id="atras">atras</div>
+
         </div>
 
-    </div>
+       </div>
+       
+
+    
+
+    <script>
+        const card = document.querySelector('#card');
+        card.addEventListener("click",(e) =>{
+            card.classList.toggle("flip")
+        })
+    </script>
     
 </body>
 </html>
